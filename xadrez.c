@@ -3,6 +3,44 @@
 // Desafio de Xadrez - MateCheck
 // Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
 // O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
+void moverpecatorre (int torre, int direcaotorre) {  
+        if (torre > 0) {// Condição de parada para a recursão      
+        if (direcaotorre == 1) printf("Direita\n");
+        else if (direcaotorre == 2) printf("Esquerda\n");
+        else if (direcaotorre == 3) printf("Cima\n");
+        else if (direcaotorre == 4) printf("Baixo\n");
+        printf("\n"); // Pula linha para organizar a saída
+        moverpecatorre(torre - 1, direcaotorre); // Chama a função recursivamente para simular os movimentos restantes
+        }
+
+    }
+void moverpecabispo (int bispo, int direcaobispo) {  
+        if (bispo > 0) {// Condição de parada para a recursão      
+        if (direcaobispo == 1) printf("Cima, Direita\n");
+        else if (direcaobispo == 2) printf("Cima, Esquerda\n");
+        else if (direcaobispo == 3) printf("Baixo, Direita\n");
+        else if (direcaobispo == 4) printf("Baixo, Esquerda\n");
+        printf("\n"); // Pula linha para organizar a saída
+        moverpecabispo(bispo - 1, direcaobispo); // Chama a função recursivamente para simular os movimentos restantes
+        }
+
+    }
+void moverpecorainha (int rainha, int direcaorainha) {  
+        if (rainha > 0) {// Condição de parada para a recursão      
+        if (direcaorainha == 1) printf("Direita\n");
+        else if (direcaorainha == 2) printf("Esquerda\n");
+        else if (direcaorainha == 3) printf("Cima\n");
+        else if (direcaorainha == 4) printf("Baixo\n");
+        else if (direcaorainha == 5) printf("Cima, Direita\n");
+        else if (direcaorainha == 6) printf("Cima, Esquerda\n");
+        else if (direcaorainha == 7) printf("Baixo, Direita\n");
+        else if (direcaorainha == 8) printf("Baixo, Esquerda\n");
+        printf("\n"); // Pula linha para organizar a saída
+        moverpecorainha(rainha - 1, direcaorainha); // Chama a função recursivamente para simular os movimentos restantes
+        }
+
+    }
+
 
 int main() {
     // Nível Novato - Movimentação das Peças
@@ -44,18 +82,9 @@ int main() {
         }
 
         printf("Movimento da Torre:\n");
-        for (int t = 1; t <= torre; t++) {
-            switch (direcaotorre) {
-            case 1:
-            printf("Direita\n"); break;
-            case 2:
-            printf("Esquerda\n"); break;
-            case 3:
-            printf("Cima\n"); break;
-            case 4:
-            printf("Baixo\n"); break;
-            }
-        }
+        
+        moverpecatorre(torre, direcaotorre); // Chama a função para simular os movimentos da torre
+
         printf("\n"); // Pula linha para organizar a saída
         break;
 
@@ -125,14 +154,9 @@ int main() {
             bispo = 7; // Ajusta a quantidade de movimentos para o máximo permitido
         }
         printf("Movimento do Bispo:\n");
-        int b = 1;
-        while (b <= bispo   ) {
-            if(direcaobispo == 1) printf("Cima, Direita\n");
-        else if(direcaobispo == 2) printf("Cima, Esquerda\n");
-        else if(direcaobispo == 3) printf("Baixo, Direita\n");
-        else if(direcaobispo == 4) printf("Baixo, Esquerda\n");
-            b++; // Incrementa para não criar um loop infinito
-        }
+     
+        moverpecabispo(bispo, direcaobispo); // Chama a função para simular os movimentos do bispo
+        
         printf("\n");
         break;
 
@@ -150,18 +174,9 @@ int main() {
             rainha = 7; // Ajusta a quantidade de movimentos para o máximo permitido
         }
         printf("Movimento da Rainha:\n");
-        int r = 1;
-        do {
-            if (direcaorainha == 1) printf("Direita\n");
-        else if (direcaorainha == 2) printf("Esquerda\n");
-        else if (direcaorainha == 3) printf("Cima\n");
-        else if (direcaorainha == 4) printf("Baixo\n");
-        else if (direcaorainha == 5) printf("Cima, Direita\n");
-        else if (direcaorainha == 6) printf("Cima, Esquerda\n");
-        else if (direcaorainha == 7) printf("Baixo, Direita\n");
-        else if (direcaorainha == 8) printf("Baixo, Esquerda\n");
-            r++;
-        } while (r <= rainha);
+      
+        moverpecorainha(rainha, direcaorainha); // Chama a função para simular os movimentos da rainha
+        
         printf("\n");
         break;
 
@@ -210,7 +225,7 @@ int main() {
         printf("Movimento do Peão:\n");
         int p = 1;
         while (p <= peao) {
-            if ((direcaopeao == 1) && (peao == 1) && (peao == 2)) printf("Cima\n");
+            if ((direcaopeao == 1) && (peao == 1) || (peao == 2)) printf("Cima\n");
         else if ((direcaopeao == 2) && (peao != 2)) printf("Cima, Direita (Captura)\n");
         else if ((direcaopeao == 3) && (peao != 2)) printf("Cima, Esquerda (Captura)\n");
         else {
